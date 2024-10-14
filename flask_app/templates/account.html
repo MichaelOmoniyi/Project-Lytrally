@@ -1,0 +1,145 @@
+{% extends "layout.html" %} {% block head %}
+<link rel="stylesheet" href="../static/style/account.css" />
+{% endblock head %}{% block body %}
+<div class="main-container">
+  <!-- <header>
+    <div class="header">
+      <img
+        id="backArrow"
+        onclick="prevPage()"
+        src="../static/images/backArrow.svg"
+        alt="Back Arrow Icon"
+      />
+      <h2>My Account</h2>
+      <img
+        class="gear"
+        src="../static/images/icons/gear.svg"
+        alt="A svg gear icon"
+      />
+    </div>
+    <div class="gearDropdown">
+      <div class="gearRow">
+        <img
+          src="../static/images/icons/notification.svg"
+          alt="A svg icon of a bell, a notification icon"
+        />
+        <p>Notification</p>
+        <div class="notificationToggle toogleContainerOn">
+          <div class="toggle toggleOn"></div>
+        </div>
+      </div>
+      <div class="gearRow">
+        <img
+          src="../static/images/icons/Reminder.svg"
+          alt="A svg icon of a hand, a reminder icon"
+        />
+        <p>Reminder</p>
+      </div>
+      <div class="reminderDetails">
+        <span>Default</span>
+        <div class="reminderDays">
+          <div class="daysRow">
+            <div class="daysSet"><p>Set Reminder</p></div>
+            <div class="days">
+              <p>1 day</p>
+              <p>1 week</p>
+              <p>2 weeks</p>
+              <p>1 month</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header> -->
+  <section class="profilePic">
+    <div class="profilePicContainer">
+      <form action="#">
+        <div class="profileImg">
+          <label for="profileImg"
+            ><img
+              class="rounded-circle profileImg"
+              src="{{ image_file }}"
+              alt="user profile pic"
+            />
+          </label>
+          <input type="file" name="profileImg" id="profileImg" />
+        </div>
+      </form>
+    </div>
+  </section>
+  <section class="profileDetails">
+    <div class="media-body">
+      <h2>Name: {{ current_user.first_name }} {{ current_user.last_name }}</h2>
+      <p class="text-secondary">Email: {{ current_user.email }}</p>
+      <span class="update">Update Profile</span>
+    </div>
+<div class="profileForm">    
+<form id="profileForm" action="#" autocomplete="on" method="post" enctype="multipart/form-data">
+      {{ form.hidden_tag() }}
+            <fieldset>
+              <legend>
+                Update Account Information
+              </legend>
+              <div class="form-group">
+                {{ form.first_name.label(class="form-control-label") }} {% if
+                form.first_name.errors %} {{ form.first_name(class="form-control
+                form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.first_name.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.first_name(class="form-control
+                form-control-lg") }} {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.last_name.label(class="form-control-label") }} {% if
+                form.last_name.errors %} {{ form.last_name(class="form-control
+                form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.last_name.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.last_name(class="form-control form-control-lg")
+                }} {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.email.label(class="form-control-label") }} {% if
+                form.email.errors %} {{ form.email(class="form-control
+                form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                  {% for error in form.email.errors %}
+                  <span>{{ error }}</span>
+                  {% endfor %}
+                </div>
+                {% else %} {{ form.email(class="form-control form-control-lg") }}
+                {% endif %}
+              </div>
+              <div class="form-group">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                  {% for error in form.picture.errors %}
+                    <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+            </div>
+              <div class="form-group">
+                {{ form.submit_to_update(class="btn btn-outline-info
+                submitForm") }}
+              </div>
+            </fieldset>
+          </form>
+          </div>
+        </div>
+        <input type="submit" value="Update" />
+      </form>
+    </div>
+  </section>
+  <button type="submit">
+    <a href="{{ url_for('signout') }}">Log Out</a>
+  </button>
+</div>
+<script src="../static/scripts/account.js"></script>
+{% endblock body %}
